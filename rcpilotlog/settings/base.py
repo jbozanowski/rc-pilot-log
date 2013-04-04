@@ -131,6 +131,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'south',
     'rcpilotlog.functional_tests',
+    'rcpilotlog.rcmodels',
+    'rcpilotlog.batteries',
+    'rcpilotlog.events',
 )
 
 # A sample logging configuration. The only tangible logging
