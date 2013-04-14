@@ -33,3 +33,7 @@ class RCPilotLogTest(LiveServerTestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertIn("body", resp.content)
         self.assertIn("Django administration", resp.content)
+        resp = self.c.get('/')
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn("body", resp.content)
+        self.assertIn("<title>", resp.content)

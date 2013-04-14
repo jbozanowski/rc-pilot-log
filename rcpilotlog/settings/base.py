@@ -131,6 +131,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'south',
     'rcpilotlog.functional_tests',
+    'rcpilotlog.main',
     'rcpilotlog.rcmodels',
     'rcpilotlog.batteries',
     'rcpilotlog.events',
