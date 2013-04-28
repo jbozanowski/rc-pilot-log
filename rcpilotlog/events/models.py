@@ -46,9 +46,8 @@ class Event(TimeStampedModel):
         ordering = ("user", "-created")
 
     def __unicode__(self):
-        # FIXME
         return u"%s (%s @ %s)" % (
-            self.get_event_type_display(),
+            self.event_type,
             self.user,
             self.created
         )
