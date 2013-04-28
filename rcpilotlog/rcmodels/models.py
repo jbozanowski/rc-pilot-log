@@ -14,7 +14,7 @@ log = logging.getLogger(__name__)
 
 class RCModelType(TimeStampedModel):
     name = models.CharField(_(u"name"), max_length=255)
-    description = models.TextField(_(u"description"))
+    description = models.TextField(_(u"description"), blank=True)
     # TODO:
     # - thumbnail (find a good thumbnail library)
 
@@ -33,7 +33,7 @@ class RCModel(TimeStampedModel):
         verbose_name=_(u"Your RC Model's Type"))
     owner = models.ForeignKey(User, verbose_name=_(u"Owner"))
     manufacturer = models.CharField(_(u"manufacturer"), max_length=255)
-    description = models.TextField(_(u"description"))
+    description = models.TextField(_(u"description"), blank=True)
     # TODO:
     # - pics (find a good pic/thumbnail library, etc.)
     #   - a gallery? probably much later, if ever

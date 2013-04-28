@@ -26,7 +26,7 @@ class Battery(TimeStampedModel):
     capacity = models.PositiveIntegerField(_(u"capacity (in mAh)"))
     chemistry = models.CharField(_(u"chemistry"), choices=CHEMISTRY,
                                  default=CHEMISTRY.lipo, max_length=128)
-    description = models.TextField(_(u"description"))
+    description = models.TextField(_(u"description"), blank=True)
 
     class Meta:
         verbose_name = _(u"Battery")

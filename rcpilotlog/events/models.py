@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
 
 class EventType(TimeStampedModel):
     name = models.CharField(_(u"name"), max_length=255)
-    description = models.TextField(_(u"description"))
+    description = models.TextField(_(u"description"), blank=True)
 
     class Meta:
         verbose_name = _(u"Event Type")
@@ -33,10 +33,12 @@ class Event(TimeStampedModel):
     event_type = models.ForeignKey(EventType, verbose_name=_(u"event type"))
     description = models.TextField(_(u"name"), blank=True)
     user = models.ForeignKey(User, verbose_name=_(u"user"))
-    rcmodel = models.ForeignKey(RCModel, verbose_name=_(u"RC model"), null=True)
-    battery = models.ForeignKey(Battery, verbose_name=_(u"battery"), null=True)
-    duration = models.IntegerField(_(u"duration"), null=True)
-    description = models.TextField(_(u"description"))
+    rcmodel = models.ForeignKey(RCModel, verbose_name=_(u"RC model"),
+                                null=True, blank=True)
+    battery = models.ForeignKey(Battery, verbose_name=_(u"battery"), null=True,
+                                blank=True)
+    duration = models.IntegerField(_(u"duration"), null=True, blank=True)
+    description = models.TextField(_(u"description"), blank=True)
 
     class Meta:
         verbose_name = _(u"Event")
