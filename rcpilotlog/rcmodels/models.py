@@ -13,21 +13,6 @@ from django.utils.translation import ugettext_lazy as _
 log = logging.getLogger(__name__)
 
 
-class RCModelType(TimeStampedModel):
-    name = models.CharField(_(u"name"), max_length=255)
-    description = models.TextField(_(u"description"), blank=True)
-    # TODO:
-    # - thumbnail (find a good thumbnail library)
-
-    class Meta:
-        verbose_name = _(u"RC Model Type")
-        verbose_name_plural = _(u"RC Model Types")
-        ordering = ["name"]
-
-    def __unicode__(self):
-        return self.name
-
-
 class RCModel(TimeStampedModel):
     MODEL_TYPES = Choices(
         ('heli', _(u"Helicopter")),

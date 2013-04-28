@@ -2,11 +2,7 @@
 
 from django.contrib import admin
 
-from .models import RCModelType, RCModel
-
-
-class RCModelTypeAdmin(admin.ModelAdmin):
-    list_display = ("name", "description")
+from .models import RCModel
 
 
 class RCModelAdmin(admin.ModelAdmin):
@@ -14,5 +10,4 @@ class RCModelAdmin(admin.ModelAdmin):
     ordering = ("owner", "rcmodel_type", "name")
 
 
-admin.site.register(RCModelType, RCModelTypeAdmin)
 admin.site.register(RCModel, RCModelAdmin)
