@@ -16,21 +16,16 @@ from rcpilotlog.rcmodels.models import RCModel
 log = logging.getLogger(__name__)
 
 
-class EventType(TimeStampedModel):
-    name = models.CharField(_(u"name"), max_length=255)
-    description = models.TextField(_(u"description"), blank=True)
-
-    class Meta:
-        verbose_name = _(u"Event Type")
-        verbose_name_plural = _(u"Event Types")
-        ordering = ['name']
-
-    def __unicode__(self):
-        return self.name
-
-
 class Event(TimeStampedModel):
-    event_type = models.ForeignKey(EventType, verbose_name=_(u"event type"))
+    EVENT_TYPES = Choices(
+        ('flight', _(u"Flight")),
+        ('batt_charge', _(u"Battery charge")),
+        ('batt_discharge', _(u"Battery discharge")),
+        ('crash', _(u"Model crash")),
+    )
+
+    event_type = models.CharField(_(u"event type"), choices=EVENT_TYPES,
+                                  default=EVENT_TYPES.flight, max_length=128)
     description = models.TextField(_(u"name"), blank=True)
     user = models.ForeignKey(User, verbose_name=_(u"user"))
     rcmodel = models.ForeignKey(RCModel, verbose_name=_(u"RC model"),
@@ -47,7 +42,7 @@ class Event(TimeStampedModel):
 
     def __unicode__(self):
         return u"%s (%s @ %s)" % (
-            self.event_type,
+            self.get_event_type_display(),
             self.user,
             self.created
         )
