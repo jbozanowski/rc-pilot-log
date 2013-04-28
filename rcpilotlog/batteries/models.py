@@ -32,3 +32,6 @@ class Battery(TimeStampedModel):
         verbose_name = _(u"Battery")
         verbose_name_plural = _(u"Batteries")
         ordering = ['owner', 'name']
+
+    def __unicode__(self):
+        return self.name

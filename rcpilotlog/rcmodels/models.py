@@ -23,6 +23,9 @@ class RCModelType(TimeStampedModel):
         verbose_name_plural = _(u"RC Model Types")
         ordering = ["name"]
 
+    def __unicode__(self):
+        return self.name
+
 
 class RCModel(TimeStampedModel):
     name = models.CharField(_(u"name"), max_length=255)
@@ -38,3 +41,6 @@ class RCModel(TimeStampedModel):
     class Meta:
         verbose_name = _(u"RC Model")
         verbose_name_plural = _(u"RC Models")
+
+    def __unicode__(self):
+        return self.name

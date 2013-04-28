@@ -25,6 +25,9 @@ class EventType(TimeStampedModel):
         verbose_name_plural = _(u"Event Types")
         ordering = ['name']
 
+    def __unicode__(self):
+        return self.name
+
 
 class Event(TimeStampedModel):
     event_type = models.ForeignKey(EventType, verbose_name=_(u"event type"))
