@@ -1,16 +1,29 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
+# -*- coding: utf-8 -*-
 
-Replace this with more appropriate tests for your application.
-"""
-
+from django.contrib.auth.models import User
 from django.test import TestCase
 
+from rcpilotlog.functional_tests.tests import test_user
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+from .models import Battery
+
+
+test_battery = {
+    'name': 'Test Battery',
+    # 'owner' needs a user created first,
+    'manufacturer': 'Test Battery Manufacturer',
+    'capacity': 2200,
+    'chemistry': Battery.CHEMISTRY.lipo,
+}
+
+
+class BatteryTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(**test_user)
+
+    def test_object_creation(self):
+        """Object creation sanity check."""
+
+        test_battery.update({'owner': self.user})
+        battery = Battery.objects.create(**test_battery)
+        self.assertTrue(battery)
