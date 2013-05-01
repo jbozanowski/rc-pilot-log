@@ -15,7 +15,7 @@ class CustomTestRunner(DjangoTestSuiteRunner):
 
     def build_suite(self, test_labels, *args, **kwargs):
         suite = super(CustomTestRunner, self).build_suite(test_labels, *args, **kwargs)
-        if settings.TEST_APPS_TO_SKIP:
+        if not test_labels and settings.TEST_APPS_TO_SKIP:
             to_test = []
             for test in suite:
                 test_module = test.__class__.__module__
