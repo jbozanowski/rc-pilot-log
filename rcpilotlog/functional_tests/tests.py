@@ -3,6 +3,7 @@
 import logging
 
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.test import LiveServerTestCase
 from django.test.client import Client
 
@@ -37,9 +38,18 @@ class RCPilotLogTest(LiveServerTestCase):
     def test_basic_gets(self):
         resp = self.c.get('/admin/')
         self.assertEqual(resp.status_code, 200)
-        self.assertIn("body", resp.content)
+        self.assertIn("<body", resp.content)
         self.assertIn("Django administration", resp.content)
-        resp = self.c.get('/')
+
+        resp = self.c.get(reverse('login'))
         self.assertEqual(resp.status_code, 200)
-        self.assertIn("body", resp.content)
-        self.assertIn("<title>", resp.content)
+        resp = self.c.get(reverse('logout'))
+        self.assertEqual(resp.status_code, 302)
+
+        resp = self.c.get(reverse('main-page'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn("<body", resp.content)
+        
+        resp = self.c.get(reverse('events:listing'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn("<body", resp.content)

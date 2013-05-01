@@ -116,6 +116,9 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'rcpilotlog.urls'
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'events:listing'
+
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'rcpilotlog.wsgi.application'
 
