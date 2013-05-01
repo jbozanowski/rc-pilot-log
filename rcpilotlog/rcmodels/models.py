@@ -16,10 +16,10 @@ log = logging.getLogger(__name__)
 class RCModel(TimeStampedModel):
     MODEL_TYPES = Choices(
         ('heli', _(u"Helicopter")),
+        ('multicopter', _(u"Multicopter")),
         ('acro', _(u"Airplane")),
         ('glider', _(u"Glider")),
         ('motoglider', _(u"Motor Glider")),
-        ('multicopter', _(u"Multicopter")),
     )
 
     name = models.CharField(_(u"name"), max_length=255)
