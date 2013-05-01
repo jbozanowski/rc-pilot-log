@@ -22,6 +22,7 @@ class Event(TimeStampedModel):
         ('batt_charge', _(u"Battery charge")),
         ('batt_discharge', _(u"Battery discharge")),
         ('crash', _(u"Model crash")),
+        ('maintenance', _(u"Craft maintenance")),
     )
 
     event_type = models.CharField(_(u"event type"), choices=EVENT_TYPES,
@@ -33,6 +34,8 @@ class Event(TimeStampedModel):
     battery = models.ForeignKey(Battery, verbose_name=_(u"battery"), null=True,
                                 blank=True)
     duration = models.IntegerField(_(u"duration"), null=True, blank=True)
+    capacity_charged = models.PositiveIntegerField(
+        _(u"capacity charged (in mAh)"), null=True, blank=True)
     description = models.TextField(_(u"description"), blank=True)
 
     class Meta:
