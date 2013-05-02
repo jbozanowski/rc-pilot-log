@@ -1,8 +1,7 @@
 {% load staticfiles %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xml:lang="en-us" lang="en-us">
+<html lang="en">
 <head>
 	<title>{% block html_title %}RC Pilot Log{% endblock %}</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -10,11 +9,16 @@
     <meta name="keywords" content="{% block meta_keywords %}{% endblock %}" />
 	{% block extra_meta %}{% endblock %}
 
-    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}" type="text/css" media="all" />
-    <link rel="stylesheet" href="{% static "css/style.css" %}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
 	{% block extra_css %}{% endblock %}	
 </head>
 <body>
     {% block body %}{% endblock %}
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-1.9.1.min.js' %}"></script>
+    {% block extra_js%}
+    {% endblock %}
 </body>
 </html>
