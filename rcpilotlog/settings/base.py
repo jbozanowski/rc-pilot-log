@@ -90,12 +90,12 @@ USE_TZ = True
 
 SITE_ID = 1
 
-#TEMPLATE_DIRS = (
+TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    #os.path.join(PROJECT_ROOT, 'templates'),
-#)
+    os.path.join(BASE_DIR, 'templates'),
+)
 
 # Don't test Django apps when running project's test suite.
 TEST_RUNNER = 'rcpilotlog.functional_tests.testrunner.CustomTestRunner'
