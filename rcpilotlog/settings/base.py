@@ -21,7 +21,8 @@ def get_env_variable(var_name):
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+# Going one dir up, since we have a settings dir instead of a file.
+BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), '..')
 
 
 DEBUG = False
