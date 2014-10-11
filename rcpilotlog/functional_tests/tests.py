@@ -37,9 +37,10 @@ class RCPilotLogTest(LiveServerTestCase):
 
     def test_basic_gets(self):
         resp = self.c.get('/admin/')
+        self.assertEqual(resp.status_code, 302)
+
+        resp = self.c.get('/admin/', follow=True)
         self.assertEqual(resp.status_code, 200)
-        self.assertIn("<body", resp.content)
-        self.assertIn("Django administration", resp.content)
 
         resp = self.c.get(reverse('login'))
         self.assertEqual(resp.status_code, 200)
@@ -47,9 +48,16 @@ class RCPilotLogTest(LiveServerTestCase):
         self.assertEqual(resp.status_code, 302)
 
         resp = self.c.get(reverse('main-page'))
-        self.assertEqual(resp.status_code, 200)
-        self.assertIn("<body", resp.content)
+        self.assertContains(resp, "<body>", status_code=200)
         
         resp = self.c.get(reverse('events:listing'))
-        self.assertEqual(resp.status_code, 200)
-        self.assertIn("<body", resp.content)
+        self.assertContains(resp, "<body>", status_code=200)
+
+    def test_logged_in_gets(self):
+        resp = self.c.post('/login/', {'username': test_admin_user['username'],
+                                       'password': test_admin_user['password']})
+        self.assertTrue(resp.status_code, 200)
+
+        resp = self.c.get('/admin/')
+        self.assertContains(resp, "<body", status_code=200)
+        self.assertContains(resp, "Django site admin")
