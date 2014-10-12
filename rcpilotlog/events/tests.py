@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+import copy
+import logging
+
 from django.contrib.auth.models import User
 from django.test import TestCase
 
@@ -7,6 +10,8 @@ from rcpilotlog.functional_tests.tests import test_user
 
 from .models import Event
 
+
+log = logging.getLogger(__name__)
 
 test_event = {
     'event_type': Event.EVENT_TYPES.flight,
@@ -21,6 +26,8 @@ class EventTest(TestCase):
     def test_object_creation(self):
         """Object creation sanity check."""
 
-        test_event.update({'user': self.user})
-        event = Event.objects.create(**test_event)
+        event_data = copy.deepcopy(test_event)
+        event_data.update({'user': self.user})
+        event = Event.objects.create(**event_data)
         self.assertTrue(event)
+        self.assertTrue(all((repr(event), str(event))))

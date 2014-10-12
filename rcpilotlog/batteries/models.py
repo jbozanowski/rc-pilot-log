@@ -33,5 +33,11 @@ class Battery(TimeStampedModel):
         verbose_name_plural = _(u"Batteries")
         ordering = ['owner', 'name']
 
-    def __unicode__(self):
-        return self.name
+    def __str__(self):
+        return "{name} ({manufacturer} {chemistry}, {capacity}" \
+               " mAh".format(
+                    name=self.name,
+                    manufacturer=self.manufacturer,
+                    chemistry=self.chemistry,
+                    capacity=self.capacity
+               )

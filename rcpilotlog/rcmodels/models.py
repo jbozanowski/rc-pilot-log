@@ -37,5 +37,5 @@ class RCModel(TimeStampedModel):
         verbose_name = _(u"RC Model")
         verbose_name_plural = _(u"RC Models")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name

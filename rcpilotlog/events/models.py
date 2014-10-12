@@ -43,9 +43,9 @@ class Event(TimeStampedModel):
         verbose_name_plural = _(u"Events")
         ordering = ("user", "-created")
 
-    def __unicode__(self):
-        return u"%s (%s @ %s)" % (
-            self.get_event_type_display(),
-            self.user,
-            self.created
+    def __str__(self):
+        return "{event_type} ({user} @ {created})".format(
+            event_type=self.get_event_type_display(),
+            user=self.user,
+            created=self.created
         )
