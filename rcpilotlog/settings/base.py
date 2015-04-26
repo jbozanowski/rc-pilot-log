@@ -7,10 +7,10 @@ from django.core.exceptions import ImproperlyConfigured
 
 def get_env_variable(var_name):
     """Get the environment variable or raise an exception.
-    
+
     For passwords and other required but sensitive stuff we don't want in the
     repo and put in evironment variables.
-    
+
     """
 
     try:
